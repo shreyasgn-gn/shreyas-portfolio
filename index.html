@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shreyas G N — Developer</title>
+>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style> 
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+      --bg:#0a0a0f;
+      --card:#15151d;
+      --border:rgba(255,255,255,0.08);
+      --accent:#5b7fff;
+      --accent2:#a78bfa;
+      --text:#ffffff;
+      --muted:#9b9bb0;
+    }
+
+    body{
+      font-family:'DM Sans',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:70px;
+      padding:0 50px;
+      background:rgba(10,10,15,0.85);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      z-index:1000;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:800;
+      font-family:'Syne',sans-serif;
+      color:white;
+    }
+
+    .nav-links{
+      display:flex;
+      list-style:none;
+      gap:30px;
+    }
+
+    .nav-links a{
+      color:var(--muted);
+      text-decoration:none;
+      transition:0.3s;
+      font-size:15px;
+    }
+
+    .nav-links a:hover{
+      color:white;
+    }
+
+    /* HERO */
+
+    #home{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:120px 50px 60px;
+    }
+
+    .hero{
+      width:100%;
+      max-width:1150px;
+      display:grid;
+      grid-template-columns:1fr 380px;
+      gap:70px;
+      align-items:center;
+    }
+
+    .hero-label{
+      color:var(--accent);
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-size:13px;
+      margin-bottom:18px;
+    }
+
+    .hero-title{
+      font-size:clamp(50px,7vw,85px);
+      line-height:1;
+      font-family:'Syne',sans-serif;
+      margin-bottom:25px;
+    }
+
+    .hero-title span{
+      display:block;
+      background:linear-gradient(135deg,#fff,var(--accent2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .hero-sub{
+      color:var(--muted);
+      line-height:1.8;
+      max-width:520px;
+      margin-bottom:35px;
+      font-size:16px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:14px 28px;
+      border-radius:100px;
+      text-decoration:none;
+      font-size:15px;
+      transition:0.3s;
+      font-weight:500;
+    }
+
+    .btn-primary{
+      background:var(--accent);
+      color:white;
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-4px);
+      box-shadow:0 10px 25px rgba(91,127,255,0.4);
+    }
+
+    .btn-outline{
+      border:1px solid var(--border);
+      color:white;
+    }
+
+    .btn-outline:hover{
+      background:rgba(255,255,255,0.05);
+      transform:translateY(-4px);
+    }
+
+    /* PROFILE */
+
+    .profile{
+      width:340px;
+      height:420px;
+      border-radius:28px;
+      overflow:hidden;
+      border:2px solid rgba(167,139,250,0.5);
+      margin:auto;
+      box-shadow:0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .profile img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    /* SECTION */
+
+    section{
+      max-width:1150px;
+      margin:auto;
+      padding:100px 50px;
+    }
+
+    .section-label{
+      color:var(--accent);
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-size:12px;
+      margin-bottom:10px;
+    }
+
+    .section-title{
+      font-size:48px;
+      font-family:'Syne',sans-serif;
+      margin-bottom:55px;
+    }
+
+    /* ABOUT */
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:60px;
+    }
+
+    .about-text{
+      color:var(--muted);
+      line-height:1.9;
+      font-size:16px;
+    }
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+    }
+
+    .stat-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      padding:28px;
+      border-radius:20px;
+      transition:0.3s;
+    }
+
+    .stat-card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(91,127,255,0.4);
+    }
+
+    .stat-number{
+      font-size:40px;
+      font-family:'Syne',sans-serif;
+      font-weight:800;
+    }
+
+    .stat-text{
+      color:var(--muted);
+      margin-top:8px;
+    }
+
+    /* SKILLS */
+
+    .skills-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:25px;
+    }
+
+    .skill-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:30px;
+      transition:0.3s;
+    }
+
+    .skill-card:hover{
+      transform:translateY(-8px);
+      border-color:rgba(91,127,255,0.4);
+    }
+
+    .skill-title{
+      font-size:22px;
+      margin-bottom:20px;
+      font-family:'Syne',sans-serif;
+    }
+
+    .skill-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .tag{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      color:var(--muted);
+      padding:8px 14px;
+      border-radius:100px;
+      font-size:13px;
+    }
+
+    /* PROJECTS */
+
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:28px;
+      align-items:stretch;
+    }
+
+    .project-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:24px;
+      overflow:hidden;
+      transition:0.3s;
+      display:flex;
+      flex-direction:column;
+      height:100%;
+    }
+
+    .project-card:hover{
+      transform:translateY(-8px);
+      border-color:rgba(91,127,255,0.4);
+    }
+
+    .project-img{
+      width:100%;
+      height:230px;
+      object-fit:cover;
+    }
+
+    .project-body{
+      padding:26px;
+      display:flex;
+      flex-direction:column;
+      flex:1;
+    }
+
+    .project-tech{
+      color:var(--accent);
+      font-size:12px;
+      margin-bottom:12px;
+      font-weight:500;
+    }
+
+    .project-title{
+      font-size:24px;
+      font-family:'Syne',sans-serif;
+      margin-bottom:14px;
+    }
+
+    .project-desc{
+      color:var(--muted);
+      line-height:1.8;
+      font-size:15px;
+      flex:1;
+    }
+
+    /* CONTACT */
+
+    .contact-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:60px;
+      text-align:center;
+    }
+
+    .contact-card h2{
+      font-size:44px;
+      margin-bottom:15px;
+      font-family:'Syne',sans-serif;
+    }
+
+    .contact-card p{
+      color:var(--muted);
+      margin-bottom:35px;
+      line-height:1.8;
+    }
+
+    .form-group{
+      margin-bottom:18px;
+    }
+
+    input,
+    textarea{
+      width:100%;
+      padding:16px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,0.04);
+      color:white;
+      font-size:15px;
+      outline:none;
+    }
+
+    input:focus,
+    textarea:focus{
+      border-color:var(--accent);
+    }
+
+    .btn-submit{
+      width:100%;
+      padding:16px;
+      border:none;
+      border-radius:14px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:white;
+      font-size:16px;
+      cursor:pointer;
+      transition:0.3s;
+      font-weight:600;
+    }
+
+    .btn-submit:hover{
+      transform:translateY(-4px);
+      box-shadow:0 10px 25px rgba(91,127,255,0.35);
+    }
+
+    /* FOOTER */
+
+    footer{
+      border-top:1px solid var(--border);
+      padding:30px;
+      text-align:center;
+      color:var(--muted);
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:900px){
+
+      .hero,
+      .about-grid,
+      .skills-grid,
+      .projects-grid{
+        grid-template-columns:1fr;
+      }
+
+      .profile{
+        width:280px;
+        height:340px;
+      }
+
+      nav{
+        padding:0 20px;
+      }
+
+      section{
+        padding:80px 20px;
+      }
+
+      #home{
+        padding:120px 20px 60px;
+      }
+
+      .hero-title{
+        font-size:56px;
+      }
+
+      .contact-card{
+        padding:35px 20px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+
+    <div class="logo">SG</div>
+
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+  </nav>
+
+  <!-- HERO -->
+
+  <section id="home">
+
+    <div class="hero">
+
+      <div>
+
+        <div class="hero-label">
+          Available For Work
+        </div>
+
+        <h1 class="hero-title">
+          Hi, I'm
+          <span>Shreyas G N</span>
+        </h1>
+
+        <p class="hero-sub">
+          MERN Stack Developer & AI/ML Enthusiast crafting
+          real-world web applications with clean code and modern design.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a href="#projects" class="btn btn-primary">
+            View My Work
+          </a>
+
+          <a href="Shreyasresume.pdf"
+             download="Shreyas_GN_Resume.pdf"
+             class="btn btn-outline">
+
+             ⬇ Download CV
+
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- PROFILE -->
+
+      <div class="profile">
+        <img src="photo.jpeg" alt="Shreyas">
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <p class="section-label">Who I Am</p>
+
+    <h2 class="section-title">About Me</h2>
+
+    <div class="about-grid">
+
+      <div class="about-text">
+
+        <p>
+          I'm a passionate MERN Stack Developer skilled in building responsive,
+          performant, and modern web applications.
+        </p>
+
+        <br>
+
+        <p>
+          Currently exploring the intersection of Web Development and AI/ML technologies.
+        </p>
+
+      </div>
+
+      <div class="stats-grid">
+
+        <div class="stat-card">
+          <div class="stat-number">3+</div>
+          <div class="stat-text">Projects Built</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-number">5+</div>
+          <div class="stat-text">Technologies</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-number">AI</div>
+          <div class="stat-text">ML Enthusiast</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-text">Curiosity</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SKILLS -->
+
+  <section id="skills">
+
+    <p class="section-label">What I Know</p>
+
+    <h2 class="section-title">Skills</h2>
+
+    <div class="skills-grid">
+
+      <div class="skill-card">
+
+        <div class="skill-title">Frontend</div>
+
+        <div class="skill-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">React</span>
+          <span class="tag">Tailwind</span>
+        </div>
+
+      </div>
+
+      <div class="skill-card">
+
+        <div class="skill-title">Backend</div>
+
+        <div class="skill-tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">Express.js</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">PHP</span>
+          <span class="tag">MySQL</span>
+        </div>
+
+      </div>
+
+      <div class="skill-card">
+
+        <div class="skill-title">AI / ML & Tools</div>
+
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Git</span>
+          <span class="tag">VS Code</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PROJECTS -->
+
+  <section id="projects">
+
+    <p class="section-label">My Work</p>
+
+    <h2 class="section-title">Projects</h2>
+
+    <div class="projects-grid">
+
+      <div class="project-card">
+
+        <img src="labour.jpeg" class="project-img">
+
+        <div class="project-body">
+
+          <div class="project-tech">
+            PHP · XAMPP
+          </div>
+
+          <div class="project-title">
+            Labour Management
+          </div>
+
+          <p class="project-desc">
+            System to manage workers, assign tasks,
+            and track productivity efficiently.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="project-card">
+
+        <video class="project-img" autoplay muted loop playsinline>
+          <source src="book shop.mp4" type="video/mp4">
+        </video>
+
+        <div class="project-body">
+
+          <div class="project-tech">
+            PHP · XAMPP
+          </div>
+
+          <div class="project-title">
+            Vegetable Shop
+          </div>
+
+          <p class="project-desc">
+            Vegetable shop management system with
+            simple and user-friendly interface.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="project-card">
+
+        <img src="book.png" class="project-img">
+
+        <div class="project-body">
+
+          <div class="project-tech">
+            HTML · CSS
+          </div>
+
+          <div class="project-title">
+            Student Book Management
+          </div>
+
+          <p class="project-desc">
+            Developed a web application where students can buy books,
+            sell old books, and upload used books for resale while
+            the admin manages listings and requests.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+
+  <section id="contact">
+
+    <div class="contact-card">
+
+      <p class="section-label">Let's Connect</p>
+
+      <h2>Get In Touch</h2>
+
+      <p>
+        Have a project idea or want to collaborate?
+        Feel free to contact me.
+      </p>
+
+      <form id="contactForm">
+
+        <div class="form-group">
+
+          <input
+            type="text"
+            id="name"
+            placeholder="Your Name"
+            required>
+
+        </div>
+
+        <div class="form-group">
+
+          <input
+            type="email"
+            id="email"
+            placeholder="Your Email"
+            required>
+
+        </div>
+
+        <div class="form-group">
+
+          <textarea
+            id="message"
+            rows="5"
+            placeholder="Your Message"
+            required></textarea>
+
+        </div>
+
+        <button type="submit" class="btn-submit">
+          Send Message
+        </button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    © 2026 Shreyas G N — Built With Passion
+
+  </footer>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    document.getElementById("contactForm").addEventListener("submit", function(e){
+
+      e.preventDefault();
+
+      let name = document.getElementById("name").value;
+      let email = document.getElementById("email").value;
+      let message = document.getElementById("message").value;
+
+      let subject = "Portfolio Contact From " + name;
+
+      let body =
+`Name: ${name}
+
+Email: ${email}
+
+Message:
+${message}`;
+
+      window.location.href =
+`mailto:shreyasgn21@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    });
+
+  </script>
+
+</body>
+</html>
